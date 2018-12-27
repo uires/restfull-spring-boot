@@ -6,10 +6,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.sousa.cursomc.entity.enums.TipoCliente;
 
@@ -17,17 +20,18 @@ import com.sousa.cursomc.entity.enums.TipoCliente;
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 2622791574918180424L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String email;
 	private String cpf;
 	private String cnpj;
 	private Integer tipoCliente;
-
+	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> endereco = new ArrayList<Endereco>();
-
-	Set<String> telefones = new HashSet<>();
+	@ElementCollection
+	@CollectionTable(name = "telefone")
+	private Set<String> telefones = new HashSet<>();
 
 	public Cliente() {
 	}
