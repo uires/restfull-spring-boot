@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import com.sousa.cursomc.entity.enums.EstadoPagamento;
 
 @Entity
-public class PagamentoComBoleto extends Pagamento implements Serializable {
+public abstract class PagamentoComBoleto extends Pagamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private LocalDate dataVencimento;
 	private LocalDate dataPagamento;
